@@ -1,5 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Data } from './testd3/testd3.component';
+import { Data } from './shared/data';
+
 
 @Injectable()
 export class DataService implements OnInit {
@@ -13,15 +14,18 @@ export class DataService implements OnInit {
     return [
       { 
         name: 'paweł',
-        status: 'ok'
+        status: 'ok',
+        count: 23
       },
       { 
         name: 'gaweł',
-        status: 'nu nu'
+        status: 'nu nu',
+        count: 34
       },
       { 
         name: 'szaweł',
-        status: 'u la la..!'
+        status: 'u la la..!',
+        count: 54
       }
     ]
   }
