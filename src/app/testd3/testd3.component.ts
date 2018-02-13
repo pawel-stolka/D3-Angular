@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { D3Service, D3, Selection } from 'd3-ng2-service';
 import { DataService } from '../data.service';
+import { Data } from '../shared/data';
 
 @Component({
   selector: 'test-d3',
@@ -38,14 +39,11 @@ export class Testd3Component implements OnInit {
         .enter()
         .append('li')
         .text(function (d) {
-          return d.name + ': ' + d.status;
+          return `${d.count} => ${d.name}: ${d.status}`;
         })
     }
   }
 
 }
 
-export class Data {
-  name: string;
-  status: string;
-}
+
