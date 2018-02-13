@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { D3Service, D3, Selection } from 'd3-ng2-service';
 import { DataService } from '../data.service';
 import { Data } from '../shared/data';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'test-d3',
@@ -12,7 +13,7 @@ export class Testd3Component implements OnInit {
 
   private d3: D3;
   private parentNativeElement: any;
-  private data: Data[];
+  private data: any;// Observable<Data[]>;
 
   constructor(element: ElementRef, 
       d3Service: D3Service,
@@ -38,7 +39,7 @@ export class Testd3Component implements OnInit {
         .data(this.data)
         .enter()
         .append('li')
-        .text(function (d) {
+        .text(function (d:any) {
           return `${d.count} => ${d.name}: ${d.status}`;
         })
     }
