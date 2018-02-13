@@ -8,9 +8,12 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class DataService implements OnInit {
-  // private _data: Observable<Data[]>
+  _data: any// Observable<Data[]>
   
-  ngOnInit() { }
+
+  ngOnInit() {
+    this.getData()
+   }
 
   constructor(private _http: Http) { }
 
@@ -35,6 +38,7 @@ export class DataService implements OnInit {
 
   mapPost(res: Response | any) : Data[] {
     let post: Data[] = res.json();
+    this._data = post
     return post;
   }
 }

@@ -13,7 +13,7 @@ export class Testd3Component implements OnInit {
 
   private d3: D3;
   private parentNativeElement: any;
-  private data: any;// Observable<Data[]>;
+  private data: Data[] = []; // Observable<Data[]>;
 
   constructor(element: ElementRef, 
       d3Service: D3Service,
@@ -26,7 +26,21 @@ export class Testd3Component implements OnInit {
     let d3 = this.d3;
     let d3ParentElement: Selection<any, any, any, any>;
 
-    this.data = this._dataService.getData()
+    // this.data = 
+    this._dataService.getData()
+    .subscribe(
+      (data: Data[]) => {
+        this.data != null 
+          ? this.data = data
+          : this.data = [{ name: "ps", status: "married", count: 1}]
+        console.log('success ', data)
+        this.data = this._dataService._data
+      },
+      (err) => { 
+        this.data = [];
+        console.log(`err: ${JSON.stringify(err)}`)
+      }
+    )
     
 
     if(this.parentNativeElement !== null)
@@ -39,7 +53,7 @@ export class Testd3Component implements OnInit {
         .data(this.data)
         .enter()
         .append('li')
-        .text(function (d:any) {
+        .text(function (d:Data) {
           return `${d.count} => ${d.name}: ${d.status}`;
         })
     }
