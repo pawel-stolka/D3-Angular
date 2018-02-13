@@ -1,0 +1,16 @@
+[{
+        "name": "paweł",
+        "status": "ok",
+        "count": 23
+    },
+    {
+        "name": "gaweł",
+        "status": "nope",
+        "count": 34
+    },
+    {
+        "name": "szaweł",
+        "status": "u la la",
+        "count": 51
+    }
+]

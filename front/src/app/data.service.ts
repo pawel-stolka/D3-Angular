@@ -1,4 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
 import { Data } from './shared/data';
 
 
@@ -8,25 +9,16 @@ export class DataService implements OnInit {
   
   ngOnInit() { }
 
-  constructor() { }
+  constructor(private _http: Http) { }
 
   getData(): Data[] {
-    return [
-      { 
-        name: 'paweł',
-        status: 'ok',
-        count: 23
-      },
-      { 
-        name: 'gaweł',
-        status: 'nu nu',
-        count: 34
-      },
-      { 
-        name: 'szaweł',
-        status: 'u la la..!',
-        count: 54
-      }
-    ]
+    let result: Data[] = [],
+        url = 'http://localhost:8800/getfile';
+    this._http.get(url)
+    .subscribe(res => {
+      // todo
+      console.log(res)
+    })
+    return result;
   }
 }
