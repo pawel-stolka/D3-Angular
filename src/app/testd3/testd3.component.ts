@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { D3Service, D3, Selection } from 'd3-ng2-service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'test-d3',
@@ -12,7 +13,9 @@ export class Testd3Component implements OnInit {
   private parentNativeElement: any;
   private data: Data[];
 
-  constructor(element: ElementRef, d3Service: D3Service) { 
+  constructor(element: ElementRef, 
+      d3Service: D3Service,
+      private _dataService: DataService) { 
     this.d3 = d3Service.getD3();
     this.parentNativeElement = element.nativeElement;
   }
@@ -21,16 +24,7 @@ export class Testd3Component implements OnInit {
     let d3 = this.d3;
     let d3ParentElement: Selection<any, any, any, any>;
 
-    this.data = [
-      { 
-        name: 'paweł',
-        status: 'ok'
-      },
-      { 
-        name: 'gaweł',
-        status: 'nu nu'
-      }
-    ]
+    this.data = this._dataService.getData()
     
 
     if(this.parentNativeElement !== null)
