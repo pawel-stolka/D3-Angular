@@ -6,10 +6,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { D3Service } from 'd3-ng2-service';
-import { DataService } from './data.service';
 
 import { AppComponent } from './app.component';
-import { Testd3Component } from './testd3/testd3.component'
 import { D3FirstComponent } from './d3-first/d3-first.component';
 import { D3SecComponent } from './d3-sec/d3-sec.component';
 import { HomeComponent } from './home/home.component';
@@ -29,7 +27,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    Testd3Component,
     D3FirstComponent,
     D3SecComponent,
     HomeComponent,
@@ -40,7 +37,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpModule
   ],
-  providers: [D3Service, DataService, NewdataService],
+  providers: [D3Service, NewdataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

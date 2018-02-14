@@ -24,7 +24,7 @@ export class Newd3Component implements OnInit {
 
   ngOnInit() {
     this.loadData()
-    this.delay(1000);
+    // this.delay(1000);
 
     let d3 = this.d3;
     let d3ParentElement: Selection<any,any,any,any> ;
@@ -32,6 +32,13 @@ export class Newd3Component implements OnInit {
     if (this.parentNativeElement !== null) {
       // console.log(this.parentNativeElement)
       console.log(this.serverData)
+
+      var bod = document.getElementsByName("ul");
+      // bod[0].innerText()
+      console.log(bod)
+      
+      
+
       d3ParentElement = d3.select(this.parentNativeElement);
 
       d3ParentElement
