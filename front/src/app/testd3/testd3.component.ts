@@ -22,29 +22,58 @@ export class Testd3Component implements OnInit {
     this.parentNativeElement = element.nativeElement;
   }
 
+  buttme() {
+    var __d = this._dataService.get4()//getData()
+    // this.data = __d;
+    console.log(__d)
+  }
+
   ngOnInit() {
     let d3 = this.d3;
     let d3ParentElement: Selection<any, any, any, any>;
 
-    // this.data = 
-    this._dataService.getData()
-    .subscribe(
-      (data: Data[]) => {
-        this.data != null 
-          ? this.data = data
-          : this.data = [{ name: "ps", status: "married", count: 1}]
-        console.log('success ', data)
-        this.data = this._dataService._data
-      },
-      (err) => { 
-        this.data = [];
-        console.log(`err: ${JSON.stringify(err)}`)
-      }
-    )
+    // this.data = [];
+    // this._dataService.getData()// .getNormal()
+
+    this._dataService.get4()
+      .subscribe(data => {
+        this.data = data
+        console.log(data)
+        console.log(this.data)
+      })
+      
+
+    
+    // .subscribe(data => console.log(data))
+
+      // .subscribe(
+      //   (data) => {
+      //     console.log(data);
+          
+        
+      // //     // this.data.push(JSON.stringify(data.json())) //= data.json()
+      //   }
+      // )
+    // this.data = this._dataService._data
+    // this._dataService.getData()
+    // .subscribe(
+    //   (data: Data[]) => {
+    //     this.data != null 
+    //       ? this.data = data
+    //       : this.data = [{ name: "ps", status: "married", count: 1}]
+    //     console.log('success ', data)
+    //     this.data = this._dataService._data
+    //   },
+    //   (err) => { 
+    //     this.data = [];
+    //     console.log(`err: ${JSON.stringify(err)}`)
+    //   }
+    // )
     
 
     if(this.parentNativeElement !== null)
     {
+      console.log(this.data)
       d3ParentElement = d3.select(this.parentNativeElement);
 
       d3ParentElement
@@ -56,6 +85,8 @@ export class Testd3Component implements OnInit {
         .text(function (d:Data) {
           return `${d.count} => ${d.name}: ${d.status}`;
         })
+    } else {
+      console.log('else')
     }
   }
 

@@ -6,11 +6,16 @@
     {
         "name": "gaweł",
         "status": "nope",
-        "count": 34
+        "count": 32
     },
     {
         "name": "szaweł",
         "status": "u la la",
         "count": 51
+    },
+    {
+        "name": "charles",
+        "status": "yabadaba duuuu!",
+        "count": 34
     }
 ]

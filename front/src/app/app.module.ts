@@ -13,10 +13,14 @@ import { Testd3Component } from './testd3/testd3.component'
 import { D3FirstComponent } from './d3-first/d3-first.component';
 import { D3SecComponent } from './d3-sec/d3-sec.component';
 import { HomeComponent } from './home/home.component';
+import { Newd3Component } from './newd3/newd3.component';
+import { NewdataService } from './newdata.service';
 
 
 const appRoutes: Routes = [
   // { path: '', component: AppComponent },
+  // { path: '', component: HomeComponent },
+  { path: 'new', component: Newd3Component },
   { path: 'home', component: HomeComponent },
   { path: 'd3-first', component: D3FirstComponent },
   { path: 'd3-sec', component: D3SecComponent }
@@ -28,14 +32,15 @@ const appRoutes: Routes = [
     Testd3Component,
     D3FirstComponent,
     D3SecComponent,
-    HomeComponent
+    HomeComponent,
+    Newd3Component
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     HttpModule
   ],
-  providers: [D3Service, DataService],
+  providers: [D3Service, DataService, NewdataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
