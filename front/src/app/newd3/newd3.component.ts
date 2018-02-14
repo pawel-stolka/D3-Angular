@@ -23,22 +23,25 @@ export class Newd3Component implements OnInit {
   }
 
   ngOnInit() {
+    console.log("ngOnInit()")
     this.loadData()
+    .then(()=>{
+      this.loadSvg()
+    });
+    
     // this.delay(1000);
 
+    
+  }
+
+  loadSvg() {
     let d3 = this.d3;
     let d3ParentElement: Selection<any,any,any,any> ;
 
     if (this.parentNativeElement !== null) {
       // console.log(this.parentNativeElement)
       console.log(this.serverData)
-
-      var bod = document.getElementsByName("ul");
-      // bod[0].innerText()
-      console.log(bod)
-      
-      
-
+      console.log("loadSvg()")
       d3ParentElement = d3.select(this.parentNativeElement);
 
       d3ParentElement
@@ -47,35 +50,14 @@ export class Newd3Component implements OnInit {
         .data(this.serverData)
         .enter()
         .append('li')
+        .attr("class", "bar")
+        .style("width", function(d){return d.count * 10 + "px"})
+        .style("outline", "1px solid black")
         .text(function (d: Data) {
           return `${d.count} => ${d.name}: ${d.status}`;
         })
+        
     }
-  }
-
-  ngOnChange() {
-    // let d3 = this.d3;
-    // let d3ParentElement: Selection < any, any, any, any > ;
-
-    // if (this.parentNativeElement !== null) {
-    //   // console.log(this.parentNativeElement)
-    //   console.log(this.serverData)
-    //   d3ParentElement = d3.select(this.parentNativeElement);
-
-    //   d3ParentElement
-    //     .append("ul")
-    //     .selectAll('li')
-    //     .data(this.serverData)
-    //     .enter()
-    //     .append('li')
-    //     .text(function (d: Data) {
-    //       return `${d.count} => ${d.name}: ${d.status}`;
-    //     })
-    // }
-  }
-
-  loadSvg() {
-    
   }
 
   delay(ms: number) {
@@ -84,10 +66,43 @@ export class Newd3Component implements OnInit {
   }
 
   loadData() {
-    this.newDataService.getUser()
-      .subscribe(data => {
+    return this.newDataService.getUser()
+    .then(
+      data => { 
         this.serverData = data
+        console.log("loadData()")
         console.log(this.serverData)
-      })
+      }
+    )
+     
   }
 }
+
+
+// this.serverData = [
+      //   {
+      //   "name": "paweł",
+      //   "status": "ok",
+      //   "count": 23
+      //   },
+      //   {
+      //   "name": "gaweł",
+      //   "status": "nope",
+      //   "count": 32
+      //   },
+      //   {
+      //   "name": "szaweł",
+      //   "status": "u la la",
+      //   "count": 51
+      //   },
+      //   {
+      //   "name": "charles",
+      //   "status": "yabadaba duuuu!",
+      //   "count": 34
+      //   },
+      //   {
+      //     "name": "charles2",
+      //     "status": "yaba duuuu!",
+      //     "count": 74
+      //     }
+      //   ]
